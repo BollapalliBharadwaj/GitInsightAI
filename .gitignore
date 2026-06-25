@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+venv/
+env/
+ENV/
+dist/
+build/
+
+# Caches
+.eslintcache
+.oxlintrc.json
+.parcel-cache
+.cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ipynb_checkpoints
+
+# Environment secrets and databases
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.db
+*.db-shm
+*.db-wal
+
+# Editor / System files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

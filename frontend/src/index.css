@@ -1,0 +1,362 @@
+/* ============================================
+   GitInsight AI — Global Styles & Design System
+   ============================================
+   Tailwind directives + custom utilities for
+   glassmorphism, gradients, shimmer, and
+   premium SaaS dark mode aesthetics.
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================
+   BASE LAYER
+   ============================================= */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-surface-950 text-white font-sans antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Focus ring — accessible but styled */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2 ring-offset-surface-950;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar       { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { @apply bg-surface-950; }
+  ::-webkit-scrollbar-thumb { @apply bg-surface-700 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-surface-600; }
+
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight text-white;
+  }
+
+  /* Code */
+  code, pre, kbd, samp {
+    @apply font-mono;
+  }
+}
+
+/* =============================================
+   COMPONENT LAYER — Reusable CSS patterns
+   ============================================= */
+@layer components {
+
+  /* -------------------------------------------
+     GLASS / SURFACE UTILITIES
+     ------------------------------------------- */
+  .glass {
+    @apply bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] rounded-2xl;
+  }
+
+  .glass-sm {
+    @apply bg-white/[0.04] backdrop-blur-md border border-white/[0.06] rounded-xl;
+  }
+
+  .glass-hover {
+    @apply glass transition-all duration-300
+           hover:bg-white/[0.08] hover:border-white/[0.14]
+           hover:shadow-glass-lg;
+  }
+
+  .surface-card {
+    @apply bg-surface-900 border border-surface-800 rounded-2xl shadow-card;
+  }
+
+  .surface-card-hover {
+    @apply surface-card transition-all duration-300
+           hover:border-surface-700 hover:shadow-card-hover;
+  }
+
+  /* -------------------------------------------
+     GRADIENT UTILITIES
+     ------------------------------------------- */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-400 via-accent-purple to-accent-cyan
+           bg-clip-text text-transparent;
+  }
+
+  .gradient-text-blue {
+    @apply bg-gradient-to-r from-primary-300 to-primary-500
+           bg-clip-text text-transparent;
+  }
+
+  .gradient-bg {
+    background: linear-gradient(-45deg, #7a2b1b, #c8533c, #9e7b9b, #373431);
+    background-size: 400% 400%;
+    @apply animate-gradient-shift;
+  }
+
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(135deg, rgba(200,83,60,0.3), rgba(158,123,155,0.3));
+    border-radius: inherit;
+  }
+
+  /* -------------------------------------------
+     SHIMMER SKELETON
+     ------------------------------------------- */
+  .skeleton {
+    @apply bg-surface-800 rounded-lg overflow-hidden relative;
+  }
+
+  .skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.04) 40%,
+      rgba(255, 255, 255, 0.08) 50%,
+      rgba(255, 255, 255, 0.04) 60%,
+      transparent 100%
+    );
+    background-size: 700px 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -700px 0;
+    }
+    100% {
+      background-position: 700px 0;
+    }
+  }
+
+  /* -------------------------------------------
+     GLOW EFFECTS
+     ------------------------------------------- */
+  .glow-blue   { @apply shadow-glow-blue; }
+  .glow-purple { @apply shadow-glow-purple; }
+  .glow-cyan   { @apply shadow-glow-cyan; }
+  .glow-green  { @apply shadow-glow-green; }
+
+  /* -------------------------------------------
+     INTERACTIVE STATES
+     ------------------------------------------- */
+  .interactive {
+    @apply transition-all duration-200 cursor-pointer select-none;
+  }
+
+  .interactive:active {
+    transform: scale(0.97);
+  }
+
+  /* -------------------------------------------
+     DIVIDER
+     ------------------------------------------- */
+  .divider {
+    @apply border-t border-surface-800;
+  }
+
+  .divider-vertical {
+    @apply border-l border-surface-800;
+  }
+}
+
+/* =============================================
+   UTILITY LAYER
+   ============================================= */
+@layer utilities {
+  /* Hide scrollbar */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Truncate text with ellipsis */
+  .truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .truncate-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Text balance */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Inset ring for inputs on focus */
+  .ring-inset-blue {
+    box-shadow: inset 0 0 0 2px #3b82f6;
+  }
+}
+
+/* =============================================
+   CUSTOM MARKDOWN PROSE TYPOGRAPHY STYLES
+   ============================================= */
+.prose {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #cbd5e1 !important; /* slate-300 */
+  line-height: 1.75 !important;
+  font-size: 0.925rem !important;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  margin-top: 1.75rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.prose h1 {
+  font-size: 1.5rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding-bottom: 0.5rem !important;
+  background: linear-gradient(to right, #60a5fa, #c084fc) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  display: inline-block !important;
+  margin-top: 1rem !important;
+}
+
+.prose h2 {
+  font-size: 1.25rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding-bottom: 0.35rem !important;
+}
+
+.prose h3 {
+  font-size: 1.1rem !important;
+}
+
+.prose p {
+  margin-bottom: 1.1rem !important;
+  color: #94a3b8 !important; /* slate-400 */
+}
+
+.prose strong {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+/* Lists formatting */
+.prose ul {
+  list-style-type: disc !important;
+  padding-left: 1.25rem !important;
+  margin-bottom: 1.1rem !important;
+}
+
+.prose ol {
+  list-style-type: decimal !important;
+  padding-left: 1.25rem !important;
+  margin-bottom: 1.1rem !important;
+}
+
+.prose li {
+  margin-bottom: 0.4rem !important;
+  color: #cbd5e1 !important;
+}
+
+.prose li::marker {
+  color: #818cf8 !important; /* indigo-400 */
+}
+
+/* Links */
+.prose a {
+  color: #60a5fa !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px !important;
+  font-weight: 500 !important;
+  transition: color 0.2s !important;
+}
+
+.prose a:hover {
+  color: #93c5fd !important;
+}
+
+/* Blockquotes styling */
+.prose blockquote {
+  border-left: 3px solid #6366f1 !important;
+  padding-left: 1rem !important;
+  color: #94a3b8 !important;
+  font-style: italic !important;
+  margin: 1.25rem 0 !important;
+  background: rgba(99, 102, 241, 0.04) !important;
+  padding-top: 0.4rem !important;
+  padding-bottom: 0.4rem !important;
+  border-radius: 0 0.5rem 0.5rem 0 !important;
+}
+
+/* Tables styling with premium colors */
+.prose table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1.5rem 0 !important;
+  font-size: 0.85rem !important;
+  line-height: 1.5 !important;
+  text-align: left !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.prose th {
+  background: rgba(255, 255, 255, 0.03) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  padding: 0.65rem 0.85rem !important;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.prose td {
+  padding: 0.65rem 0.85rem !important;
+  color: #94a3b8 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.prose tr:last-child td {
+  border-bottom: none !important;
+}
+
+.prose tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.01) !important;
+}
+
+/* Code block container */
+.prose pre {
+  background-color: #080c14 !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 0.5rem !important;
+  padding: 0.85rem 1.1rem !important;
+  overflow-x: auto !important;
+  margin: 1.25rem 0 !important;
+}
+
+/* Inline Code tags */
+.prose :not(pre) > code {
+  background-color: rgba(99, 102, 241, 0.12) !important;
+  color: #a5b4fc !important; /* indigo-300 */
+  padding: 0.15rem 0.35rem !important;
+  border-radius: 0.25rem !important;
+  font-weight: 500 !important;
+  font-size: 0.825rem !important;
+  border: 1px solid rgba(99, 102, 241, 0.18) !important;
+}
