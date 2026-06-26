@@ -41,7 +41,9 @@ class AIService:
     async def _generate_gemini(self, prompt: str, system_prompt: str = None) -> str:
         # Use gemini-1.5-flash by default
         model = "gemini-1.5-flash"
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={settings.gemini_api_key}"
+        # Clean API key of any leading/trailing spaces or quotes
+        api_key = settings.gemini_api_key.strip().strip('"').strip("'")
+        url = f"https://generativelanguage.googleapis.com/v1/models/{model}:generateContent?key={api_key}"
         
         payload = {
             "contents": [{
@@ -74,8 +76,9 @@ class AIService:
     async def _generate_groq(self, prompt: str, system_prompt: str = None) -> str:
         model = self._map_groq_model()
         url = "https://api.groq.com/openai/v1/chat/completions"
+        api_key = settings.groq_api_key.strip().strip('"').strip("'")
         headers = {
-            "Authorization": f"Bearer {settings.groq_api_key}",
+            "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json"
         }
         messages = []
@@ -108,8 +111,9 @@ class AIService:
     async def _generate_openai(self, prompt: str, system_prompt: str = None) -> str:
         model = "gpt-4o-mini"
         url = "https://api.openai.com/v1/chat/completions"
+        api_key = settings.openai_api_key.strip().strip('"').strip("'")
         headers = {
-            "Authorization": f"Bearer {settings.openai_api_key}",
+            "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json"
         }
         messages = []
