@@ -11,7 +11,7 @@
  *   <Select label="Language" options={[...]} />
  */
 
-import { useState, forwardRef } from 'react'
+import { forwardRef } from 'react'
 
 /* ── Base input class builder ────────────────────────────────────── */
 function buildInputClass({ hasError, hasLeftIcon, hasRightIcon, disabled }) {

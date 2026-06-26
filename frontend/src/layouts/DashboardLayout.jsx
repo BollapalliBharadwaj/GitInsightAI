@@ -13,12 +13,12 @@
  */
 
 import { useState } from 'react'
-import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   GitBranch, LayoutDashboard, Search, History, BarChart2,
   Settings, ChevronLeft, ChevronRight, Zap, Shield, Package,
-  BookOpen, Bell, User, Command, X, Plus, Moon, LogOut,
+  BookOpen, Bell, X, Plus, LogOut,
 } from 'lucide-react'
 
 /* ══════════════════════════════════════════════

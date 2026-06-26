@@ -19,10 +19,10 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import {
-  GitBranch, Search, Shield, Zap, BarChart2, BookOpen,
+  GitBranch, Shield, Zap, BarChart2, BookOpen,
   Star, ChevronDown, ArrowRight, ExternalLink,
   Code2, Package, Cpu, CheckCircle, Sparkles, Globe, Menu, X,
-  TrendingUp, Lock, Eye, Database, GitPullRequest, Send, Loader, Plus
+  TrendingUp, Database, GitPullRequest, Send, Loader, Plus
 } from 'lucide-react'
 
 /* ─────────────────────────────────────────────
@@ -33,10 +33,6 @@ const fadeUp = {
   show:    { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] } },
 }
 
-const fadeIn = {
-  hidden: { opacity: 0 },
-  show:   { opacity: 1, transition: { duration: 0.5 } },
-}
 
 const stagger = (delay = 0.1) => ({
   hidden: {},
@@ -524,7 +520,7 @@ const FEATURES = [
   },
 ]
 
-function FeatureCard({ icon: Icon, gradient, glow, title, desc, index }) {
+function FeatureCard({ icon: Icon, gradient, glow, title, desc }) {
   return (
     <motion.div
       variants={fadeUp}

@@ -60,11 +60,18 @@ def create_app() -> FastAPI:
     )
 
     # -- CORS Middleware --
-    # Allows frontend (Vite dev server) to make API calls
+    # Allows frontend (Vite dev server or deployed app) to make API calls safely.
+    # Supports comma-separated list of origins or wildcard '*'
+    origins = []
+    if settings.frontend_url:
+        origins = [o.strip() for o in settings.frontend_url.split(",") if o.strip()]
+    
+    allow_all = "*" in origins or not origins
+    
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=[settings.frontend_url],
-        allow_credentials=True,
+        allow_origins=["*"] if allow_all else origins,
+        allow_credentials=not allow_all,
         allow_methods=["*"],
         allow_headers=["*"],
     )

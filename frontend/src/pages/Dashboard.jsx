@@ -18,13 +18,13 @@ import { getAnalysisHistory } from '../lib/api'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import {
   TrendingUp, Shield, Package, BookOpen, Search, GitBranch,
-  Star, GitFork, Eye, Clock, ArrowRight, Zap, Code2,
-  BarChart2, CheckCircle, AlertTriangle, XCircle, ExternalLink,
+  Star, Clock, ArrowRight, Code2,
+  AlertTriangle, XCircle, ExternalLink,
   RefreshCw, Filter, ChevronDown, Circle,
 } from 'lucide-react'
 import DashboardLayout from '../layouts/DashboardLayout'
 import Skeleton, {
-  SkeletonCard, SkeletonStatRow, SkeletonTable, SkeletonText,
+  SkeletonCard, SkeletonStatRow, SkeletonTable,
 } from '../components/ui/Skeleton'
 
 /* ── Animation helpers ───────────────────────────────────────────── */
@@ -59,42 +59,6 @@ const MOCK_REPOS = [
   { id: 8, name: 'django/django',         lang: 'Python',     stars: '79k',  forks: '32k',  score: 87, status: 'success', issues: 8,  lastRun: '2 days ago', views: '2k'  },
 ]
 
-const ANALYSIS_CARDS_DATA = [
-  {
-    id: 1, repo: 'facebook/react', lang: 'JavaScript', score: 96, trend: '+3',
-    metrics: [
-      { label: 'Code Quality',  value: 97, color: 'bg-primary-500',    icon: Code2  },
-      { label: 'Security',      value: 98, color: 'bg-accent-green',   icon: Shield },
-      { label: 'Dependencies',  value: 92, color: 'bg-accent-purple',  icon: Package },
-      { label: 'Documentation', value: 95, color: 'bg-accent-cyan',    icon: BookOpen },
-    ],
-    summary: 'Excellent code quality with strong test coverage. 2 minor dependency updates available.',
-    analyzedAt: '2 min ago',
-  },
-  {
-    id: 2, repo: 'microsoft/vscode', lang: 'TypeScript', score: 91, trend: '+1',
-    metrics: [
-      { label: 'Code Quality',  value: 93, color: 'bg-primary-500',    icon: Code2  },
-      { label: 'Security',      value: 95, color: 'bg-accent-green',   icon: Shield },
-      { label: 'Dependencies',  value: 84, color: 'bg-accent-orange',  icon: Package },
-      { label: 'Documentation', value: 88, color: 'bg-accent-cyan',    icon: BookOpen },
-    ],
-    summary: '7 outdated dependencies found. Architecture is clean but docs coverage can improve.',
-    analyzedAt: '18 min ago',
-  },
-  {
-    id: 3, repo: 'vuejs/vue', lang: 'JavaScript', score: 88, trend: '-2',
-    metrics: [
-      { label: 'Code Quality',  value: 88, color: 'bg-primary-500',    icon: Code2  },
-      { label: 'Security',      value: 82, color: 'bg-accent-orange',  icon: Shield },
-      { label: 'Dependencies',  value: 79, color: 'bg-accent-red',     icon: Package },
-      { label: 'Documentation', value: 91, color: 'bg-accent-cyan',    icon: BookOpen },
-    ],
-    summary: '14 issues detected. 3 dependencies have known CVEs. Security posture needs attention.',
-    analyzedAt: '1 hr ago',
-  },
-]
-
 const LANG_COLORS = {
   JavaScript: '#f7df1e',
   TypeScript: '#3178c6',
@@ -120,7 +84,7 @@ function StatCards({ loading }) {
   return (
     <motion.div variants={stagger(0.07)} initial="hidden" animate="show"
       className="grid grid-cols-2 xl:grid-cols-4 gap-4">
-      {STATS.map((s, i) => (
+      {STATS.map((s) => (
         <motion.div key={s.label} variants={fadeUp}
           className="relative bg-surface-900 border border-surface-800 rounded-2xl p-5 overflow-hidden group hover:border-surface-700 transition-colors duration-200">
           {/* Icon */}
@@ -351,9 +315,9 @@ function MiniProgressBar({ value, color }) {
 }
 
 function AnalysisCard({ repo, lang, score, trend, metrics, summary, analyzedAt, url, loading }) {
+  const navigate = useNavigate()
   if (loading) return <SkeletonCard />
   const trendUp = trend.startsWith('+')
-  const navigate = useNavigate()
 
   const handleFullReport = () => {
     const targetUrl = url || `https://github.com/${repo}`

@@ -2,10 +2,10 @@ import { useState, useEffect, useMemo } from 'react'
 import DashboardLayout from '../layouts/DashboardLayout'
 import { getAnalysisHistory } from '../lib/api'
 import { 
-  BookOpen, Sparkles, AlertCircle, FileText, CheckCircle, 
-  HelpCircle, Compass, Terminal 
+  BookOpen, Sparkles, AlertCircle, 
+  Compass, Terminal 
 } from 'lucide-react'
-import Skeleton, { SkeletonCard } from '../components/ui/Skeleton'
+import { SkeletonCard } from '../components/ui/Skeleton'
 
 export default function Documentation() {
   const [repos, setRepos] = useState([])

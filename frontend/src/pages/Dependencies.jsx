@@ -2,10 +2,10 @@ import { useState, useEffect, useMemo } from 'react'
 import DashboardLayout from '../layouts/DashboardLayout'
 import { getAnalysisHistory } from '../lib/api'
 import { 
-  Package, AlertTriangle, ShieldAlert, CheckCircle, 
-  ExternalLink, Layers, FileText, Activity 
+  Package, ShieldAlert, CheckCircle, 
+  Layers, Activity 
 } from 'lucide-react'
-import Skeleton, { SkeletonTable } from '../components/ui/Skeleton'
+import { SkeletonTable } from '../components/ui/Skeleton'
 
 export default function Dependencies() {
   const [repos, setRepos] = useState([])

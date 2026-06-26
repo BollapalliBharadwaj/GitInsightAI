@@ -6,10 +6,9 @@
  */
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import {
-  Search, GitBranch, Star, Shield, Zap, Package,
-  BookOpen, Code, AlertTriangle, CheckCircle, Info, Sparkles,
+  Search, GitBranch, Star, Shield, Package,
+  Code, AlertTriangle, CheckCircle, Info, Sparkles,
 } from 'lucide-react'
 
 import Button, { IconButton } from '../components/ui/Button'
@@ -17,8 +16,8 @@ import Badge from '../components/ui/Badge'
 import Card, { StatCard } from '../components/ui/Card'
 import Input, { Textarea, Select } from '../components/ui/Input'
 import Modal from '../components/ui/Modal'
-import Spinner, { PageLoader } from '../components/ui/Spinner'
-import Skeleton, {
+import Spinner from '../components/ui/Spinner'
+import {
   SkeletonText, SkeletonCard, SkeletonTable, SkeletonStatRow,
 } from '../components/ui/Skeleton'
 import Table from '../components/ui/Table'

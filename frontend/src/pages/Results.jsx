@@ -2,11 +2,10 @@ import { useState, useEffect, useMemo } from 'react'
 import DashboardLayout from '../layouts/DashboardLayout'
 import { getAnalysisHistory } from '../lib/api'
 import { 
-  BarChart2, Shield, Code, Sparkles, TrendingUp, AlertTriangle, 
-  GitBranch, Circle, HelpCircle, CheckCircle2 
+  Shield, Sparkles, TrendingUp, 
+  GitBranch, Circle 
 } from 'lucide-react'
-import { motion } from 'framer-motion'
-import Skeleton, { SkeletonCard } from '../components/ui/Skeleton'
+import { SkeletonCard } from '../components/ui/Skeleton'
 
 const LANG_COLORS = {
   JavaScript: '#f7df1e',

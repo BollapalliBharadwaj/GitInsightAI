@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import DashboardLayout from '../layouts/DashboardLayout'
 import { getAnalysisHistory } from '../lib/api'
 import { 
-  Search, Filter, ChevronDown, RefreshCw, ExternalLink, 
-  Clock, Star, Circle, GitBranch, ArrowRight, Shield 
+  Search, Filter, ChevronDown, 
+  Clock, Circle, GitBranch, ArrowRight 
 } from 'lucide-react'
-import Skeleton, { SkeletonTable } from '../components/ui/Skeleton'
+import { SkeletonTable } from '../components/ui/Skeleton'
 
 const LANG_COLORS = {
   JavaScript: '#f7df1e',

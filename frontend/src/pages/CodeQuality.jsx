@@ -2,11 +2,10 @@ import { useState, useEffect, useMemo } from 'react'
 import DashboardLayout from '../layouts/DashboardLayout'
 import { getAnalysisHistory } from '../lib/api'
 import { 
-  Code2, AlertTriangle, CheckCircle, Info, Zap, 
-  ArrowRight, Shield, Cpu, Layers 
+  Code2, AlertTriangle, CheckCircle, Info, 
+  Cpu, Layers 
 } from 'lucide-react'
-import { motion } from 'framer-motion'
-import Skeleton, { SkeletonCard } from '../components/ui/Skeleton'
+import { SkeletonCard } from '../components/ui/Skeleton'
 
 export default function CodeQuality() {
   const [repos, setRepos] = useState([])
