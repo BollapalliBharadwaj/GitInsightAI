@@ -32,6 +32,11 @@ class Settings(BaseSettings):
     ollama_base_url: str = "http://localhost:11434"
     ollama_model: str = "qwen2.5:1.5b"
 
+    # Cloud LLM API Keys (optional — enables cloud deployment)
+    gemini_api_key: str = ""
+    groq_api_key: str = ""
+    openai_api_key: str = ""
+
     # CORS — frontend dev server origin
     frontend_url: str = "http://localhost:5173"
 
