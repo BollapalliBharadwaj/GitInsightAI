@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, status, Depends
+from fastapi import APIRouter, HTTPException, status, Depends, Request
 from loguru import logger
 
 from core.exceptions import ValidationError, APIError
@@ -7,12 +7,13 @@ from services.github import GitHubService
 from services.ai import AIService
 from agents.graph import analysis_graph
 from database.connection import get_database
+from utils.rate_limit import rate_limiter
 
 router = APIRouter()
 github_service = GitHubService()
 ai_service = AIService()
 
-@router.post("/analyze", response_model=APIResponse)
+@router.post("/analyze", response_model=APIResponse, dependencies=[Depends(rate_limiter)])
 async def analyze_repository(request: GitHubRepoRequest, db = Depends(get_database)):
     """
     Endpoint to trigger complete repository analysis.

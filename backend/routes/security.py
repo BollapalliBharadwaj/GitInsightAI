@@ -1,5 +1,5 @@
 import httpx
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Depends
 from loguru import logger
 
 from core.exceptions import ValidationError, APIError
@@ -7,10 +7,11 @@ from models.schemas import GitHubRepoRequest
 from models.security_models import SecurityAnalysisResponse
 from services.github import GitHubService
 from services.security_analyzer import SecurityAnalyzer
+from utils.rate_limit import rate_limiter
 
 router = APIRouter()
 
-@router.post("/security/analyze", response_model=SecurityAnalysisResponse, status_code=status.HTTP_200_OK)
+@router.post("/security/analyze", response_model=SecurityAnalysisResponse, status_code=status.HTTP_200_OK, dependencies=[Depends(rate_limiter)])
 async def analyze_repository_security(request: GitHubRepoRequest):
     """
     Endpoint to trigger static code security analysis on a GitHub repository.
