@@ -21,6 +21,6 @@ export const config = {
     model: process.env.OLLAMA_MODEL || 'qwen2.5:1.5b',
   },
   cors: {
-    frontendUrl: process.env.FRONTEND_URL || 'http://localhost:5173',
+    frontendUrl: process.env.FRONTEND_URL || '*',
   },
 };
