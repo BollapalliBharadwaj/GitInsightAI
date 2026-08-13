@@ -12,9 +12,9 @@ import securityRoutes from './routes/security.js';
 const app = express();
 
 // Middleware
-const origins = config.cors.frontendUrl ? config.cors.frontendUrl.split(',').map(o => o.trim()) : [];
 app.use(cors({
-  origin: origins.includes('*') || origins.length === 0 ? '*' : origins
+  origin: true,
+  credentials: true
 }));
 
 app.use(express.json());
