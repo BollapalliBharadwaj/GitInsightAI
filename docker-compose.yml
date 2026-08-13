@@ -11,12 +11,13 @@ services:
       - PORT=8000
       - HOST=0.0.0.0
       - OLLAMA_BASE_URL=http://ollama:11434
+      - DATABASE_FILE=./data/gitinsight.db
     env_file:
       - ./backend/.env
-    volumes:
-      - backend_db_data:/app
     depends_on:
       - ollama
+    volumes:
+      - ./backend/data:/app/data
     restart: unless-stopped
 
   frontend:
@@ -38,6 +39,4 @@ services:
     restart: unless-stopped
 
 volumes:
-  backend_db_data:
   ollama_data:
-
